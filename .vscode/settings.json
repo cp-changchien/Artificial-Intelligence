@@ -1,14 +1,22 @@
 {
     "cSpell.words": [
         "Backpropagation",
+        "baricentre",
+        "baricentres",
+        "datapoints",
+        "DBSCAN",
         "Feedforward",
+        "Forgy",
+        "Gini",
         "LSTM",
         "LSTMs",
         "nonlinear",
         "nonlinearities",
         "nonlinearly",
         "overfit",
+        "overfitting",
         "SVMs",
+        "testpoints",
         "underfit"
     ]
 }

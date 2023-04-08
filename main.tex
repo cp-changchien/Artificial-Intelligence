@@ -330,7 +330,134 @@ Introducing a \textit{cell state C} to convey (store) information from the far p
 
 
 \section{Unsupervised Learning}
-methods that do not require labelled dataset. 
+Methods that do not require labelled dataset. \textbf{Clustering} groups the instances based on their similarity without class labels.
+\subsection{k-Means clustering (Lloyd-Forgy algorithm)}
+Given a set of vector-valued data, $\mathbf{x}^{(i)}$, with the goal of grouping $m$ observation into $k$ clusters. k-means algorithm is iterative and is described as following:
+\begin{itemize}
+    \item \textbf{Choose a metric (distance function)}. This quantitatively defines the notion of \textit{similarity} by measuring the distance between points in the \textit{feature space}. The distance are usually calculated using the squared Euclidean distance $\lVert\cdot\rVert^2$.
+    \item \textbf{Choose number of clusters, $k$}
+    \item \textbf{Choose the centroids} These are the baricentres (means), $\mu_j$, of the clusters, representing the positions of the clusters. 
+    \item \textbf{Compute the distance and Assign} of each instance with respect to each centroid, $\lVert\pmb{x}^{(i)}-\pmb{\mu}_j\rVert^2$ for $i=1,2,\dots, k$.
+    \item \textbf{Compute the baricentre} of each centroid, $\mu_{j,new}=1/N_j\sum_{j=1}^{N_j}\pmb{x}^{(j)}$, where $N_j$ is the number of points, $\pmb{x}^{(i)}$, that belong in cluster j. Therefore, $\sum_{i=1}^{k}N_i=m$. 
+    \item \textbf{Update centroid}. The new centroid is the baricentre from the previous new mean. 
+    \item Compute the new distance, under the mean distance from the centroid stops changing. 
+\end{itemize}
+
+Although k-means algorithm presents a fast and effective method to cluster data points, it has some limits: (i) though the algorithm is guaranteed to converge, it might not be the globally optimal solution, mainly because it depends on the initial centroid initialisation and numbers of cluster chosen. (ii) it noes not perform well when clusters have varying sizes.\par 
+
+There are several approaches to be taken to optimise the solution: (i) different centroid initialisation, (ii) number of clusters, a simple method is to plot the variance and the number of cluster, and choose the number of clusters at the inflection point (elbow). This is called the \textit{elbow method}. (iii) Feature scaling, scale the input features before running k-means. 
+
+\subsection{Density-based spatial clustering of applications with noise (DBSCAN)}
+A clustering algorithm that can handle nested clusters, and identifying nested algorithms at higher dimensions where we can't perceive by eye. DBSCAN groups points that are closely-packed, identifies the points that are isolated as outliers. 
+\begin{itemize}
+    \item \textbf{Choose a metric (distance function)} --- Euclidean distance, $\lVert\cdot\rVert^2$
+    \item \textbf{Choose the vicinity}, $\varepsilon$ , to other points, i.e., the neighbourhood $\lVert\pmb{x}^{(i)}-\pmb{x}^{(j)}\rVert^2\leq\varepsilon$. Choose $N$ to define the number of points that are needed to classify a neighbourhood as high density. 
+    \item \textbf{Select a instance} and \textbf{Count} how many instances are located with distance $\varepsilon$ from it. 
+    \begin{itemize}
+        \item If an instance has at least $N$ in its $\varepsilon$, then it is considered as a \textit{core instance}. All instances in $\varepsilon$ of a core instance belong to the same cluster. This may also include other core instances. 
+        \item If fewer that $N$ belong in $\varepsilon$, it is identify as \textit{Non-core} instance. 
+    \end{itemize}
+    \item \textbf{Classify} anomalies that are not core instances. 
+\end{itemize}
+
+DBSCAN provides the advantage of not needing to specify the number of clusters, can find clusters with complicated shapes and can also identifies outliers. However, it does not cluster effectively when there are large differences in densities. 
+
+
+\subsection{Hierarchical clustering}
+Hierarchical clustering does not required user input cluster numbers, it does it by inspecting the result. This section will be focusing on using \textbf{Bottom-up}, in which each instance defines a cluster a iteration 0. The algorithm then paris and merge clusters. 
+\begin{itemize}
+    \item \textbf{Choose a metric (distance function)} --- Euclidean distance, $\lVert\cdot\rvert^2$.
+    \item \textbf{Compute} the distance between all the instances. 
+    \item \textbf{Merge} the closest pair into a new cluster, which is located midway its original instance. 
+    \item \textbf{Repeat} Step 1-2 with $m-1$ instances. 
+    \item \textbf{Stop} when left with one cluster.  
+\end{itemize}
+
+\subsection{Elliptic envelope for anomaly detection}
+Using Gaussian density distribution as an approach to identify outliers. 
+\subsubsection{Multivariate Gaussian distribution}
+A column vector of random variable (feature), $\pmb{X} = [X_1, X_2, \dots, X_N]^T$ is Gaussian distributed. 
+\begin{gather*}
+    f_{\pmb{x}}(\pmb{x}) = \frac{1}{\sqrt{(2\pi)^N\text{det}(\Sigma)}}\text{exp}\Big(-\frac{\lVert\pmb{x-\mu}\rVert^2_\Sigma}{2}\Big)
+\end{gather*}
+where $\pmb{\mu}$ is the column-vector if the means, 
+\begin{gather*}
+    \pmb{\mu}=\frac{1}{m}\sum_{i=1}^{m}\pmb{x}^{(i)}
+\end{gather*}
+and $\Sigma$ is the \textbf{covariance matrix}, which can be computed from a sample, $m$, as (usually presented as matrix). Covariance matrix is \textbf{symmetric} and can give insights into whether the variable are correlated (only diagonal values, or the principal axes of the ellipsoid is not parallel to the feature axis), or uncorrelated (non-diagonal)
+\begin{gather*}
+    \pmb{\Sigma} = \frac{1}{m-1}\sum_{i=1}^{m}(\pmb{x}^{(i)}-\pmb{\mu})(\pmb{x}^{(i)}-\pmb{\mu})^T
+\end{gather*}
+And finally the norm that measures the distance between the mean and a feature is
+\begin{gather*}
+    \lVert\pmb{x}-\pmb{\mu}\rvert^2_\Sigma = (\pmb{x}-\pmb{\mu})^T\pmb{\Sigma}^{-1}(\pmb{x}-\pmb{\mu})
+\end{gather*}
+The inverse of the covariance matrix, $\Sigma^{-1}$, is also known as the \textit{precision} matrix. 
+\subsubsection{Elliptic envelope algorithm}
+elliptic envelope algorithm is a distance-based anomaly detection method that can be summarised as 
+\begin{enumerate}
+    \item \textbf{Assume} the datapoints to be Gaussian distributed
+    \item \textbf{Compute} mean and covariance (covariance matrix also defines the shape of the ellipse)
+    \item \textbf{Compute} the distance, $D$, between testpoints and the mean
+    \item \textbf{Choose} the decision boundary, $c$ (the range of the elliptic)
+    \item \textbf{If} $D>c$, the test point is an outlier (anomaly). 
+\end{enumerate}
+
+
+\section{Decision Tree}
+Decision tree contains three main components: (i) \textbf{Internal nodes} that provides classification criteria, (ii) \textbf{Branches} that listed out the features that satisfies the previous criteria, and (iii) \textbf{End nodes (leaves)} that is the final result for classification. \par
+
+Noteworthy that when classifying between binary classes, the criteria can be set for e.g., $x_1=3$ where equal sign could be used. But when dealing with numerical values, \textbf{inequalities} must be used, $x\leq3$.
+
+\subsection{Impurity Measures}
+Decision tree is constructed in the learning process node by node. The following nodes, or \textit{children nodes}, for the partition are constructed with minimum impurity. Two impurity measure will be discussed here --- \textit{information gain, Gini diversity index}
+\begin{itemize}
+    \item Information gain
+        \begin{itemize}
+            \item information gain tries to find a suitable separation line in the features that can classify data in a more effective way. e.g. by shuffling the order of the feature:
+            \begin{table}[hbt]
+                \centering
+                \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+                \hline
+                $x_1$ & 3 & 7 & 3 & 4 & 3 & 6 & 5 & 6 \\ \hline
+                $x_2$ & 5 & 6 & 3 & 8 & 9 & 5 & 8 & 4 \\ \hline
+                label & pass & fail & pass & fail & fail & pass & fail & fail \\ \hline
+                \end{tabular}
+            \end{table}
+            \vspace*{-0.3cm}
+            \begin{table}[hbt]
+                \centering
+                \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+                \hline
+                $x_1$ & 3 & 6 & 3 & 6 & 7 & 4 & 5 & 3 \\ \hline
+                $x_2$ & 3 & 4 & 5 & 5 & 6 & 8 & 8 & 9 \\ \hline
+                label & pass & fail & pass & pass & fail & fail & fail & fail \\ \hline
+                \end{tabular}
+            \end{table}
+            In this case, we can place a separation line at $x_2\geq6$ to better separate the fail by one node. 
+            \item \textbf{Entropy} can be used to evaluate the difficulty of predicting category.
+            \begin{gather*}
+                H = -\sum_{i = 1}^{n}(p_i log_2p_i)
+            \end{gather*}
+            The aim is to find features with \textbf{highest information gain} (this feature will be split into children nodes to further). \textbf{IG} is \textbf{highest} when splitting the feature makes the biggest reduction in entropy.
+            \begin{gather*}
+                IG(feature) = H(\text{label}) - H(\text{label}, feature)
+            \end{gather*}
+        \end{itemize}
+    \item Gini Impurity Criterion
+        \begin{itemize}
+            \item How often a randomly chosen element from the set is incorrectly labelled. Higher GI, higher chance of misclassification
+            \begin{gather*}
+                GI = 1-\sum_{i=0}^{J}P_i^2
+            \end{gather*}
+            \item Split with the lowest weighted FI for the child trees to achieve largest reduction in GI.
+        \end{itemize}
+    \item Shallow trees has less variance but higher bias. Deep trees has less bias but more prone to overfitting. 
+\end{itemize}
+
+
+\section{Principal Component Analysis (PCA)}
+
 
 %%%%%%%%%% %%%%%%%%%%
 
