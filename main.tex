@@ -276,7 +276,7 @@ Consider time as \textbf{feature (inputs)}, and the physical variable as \textbf
     \item needs the inputs of a fixed size. 
 \end{itemize}
 
-\subsection{Recurrent cell}
+\subsection{Recurrent Neural Network}
 Store the previous time-step and feed it to the next time step as the hidden state.
 \vspace*{0.3cm}
 \begin{gather*}
@@ -301,6 +301,7 @@ Store the previous time-step and feed it to the next time step as the hidden sta
     \item Unstable gradient occurs from above equation, when $\theta_a$ is small, the gradient will become smaller and leads to \textbf{vanishing gradient} problem,  make it difficult for the network to remember information from previous time steps. This can be solved by using ReLU activation functions due to its unbounded positive range. 
     \item If $\theta_a$ is large, this leads to exploding gradient, which can be solved by clip (rescale) the gradient
     \item Recurrent neural network are not ideal for learning temporal correlations in long time series due to short-term memory. 
+    \item 3D tensor with shape (batch\_size, sequence\_length, input\_dim).
 \end{itemize}
 
 \subsection{Long-short time memory units LSTMs}
@@ -384,7 +385,7 @@ where $\pmb{\mu}$ is the column-vector if the means,
 \begin{gather*}
     \pmb{\mu}=\frac{1}{m}\sum_{i=1}^{m}\pmb{x}^{(i)}
 \end{gather*}
-and $\Sigma$ is the \textbf{covariance matrix}, which can be computed from a sample, $m$, as (usually presented as matrix). Covariance matrix is \textbf{symmetric} and can give insights into whether the variable are correlated (only diagonal values, or the principal axes of the ellipsoid is not parallel to the feature axis), or uncorrelated (non-diagonal)
+and $\Sigma$ is the \textbf{covariance matrix}, which can be computed from a sample, $m$, as (usually presented as matrix). Covariance matrix is \textbf{symmetric} and can give insights into whether the variable are correlated (only diagonal values, or the principal axes of the ellipsoid is not parallel to the feature axis), or uncorrelated (non-diagonal). it also represents the eigenvalues, which are non-negative.
 \begin{gather*}
     \pmb{\Sigma} = \frac{1}{m-1}\sum_{i=1}^{m}(\pmb{x}^{(i)}-\pmb{\mu})(\pmb{x}^{(i)}-\pmb{\mu})^T
 \end{gather*}
@@ -457,7 +458,14 @@ Decision tree is constructed in the learning process node by node. The following
 
 
 \section{Principal Component Analysis (PCA)}
+finds an optimal direction (principle axis of the ellipsoid in gaussian distribution) of maximum variance. The maximum variance in the direction $\hat{w}_1$ is given by the maximum eigenvalue, $\lambda_1$, of the covariance matrix. Geometrically, this direction is the principal axis (eigenvector) of the ellipsoid, which is the direction along which the ellipsoid is most elongated.\par 
 
+The difference between PCA and linear regression is:
+\begin{itemize}
+    \item The sensitivity on how you define input and output is large ($y=ax+b or x = ay+b$), provides very different result
+    \item linear regression is sensitive to outliers
+    \item The errors in PCA are orthogonal to the principal axis.
+\end{itemize}
 
 %%%%%%%%%% %%%%%%%%%%
 
