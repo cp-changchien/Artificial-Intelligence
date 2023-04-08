@@ -293,4 +293,70 @@ Package caption Info: End \AtBeginDocument code.
 * \marginparwidth=57.0pt
 * \marginparsep=11.0pt
 * \columnsep=10.0pt
-* \skip\footins=9.
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2021/12/07 v1.3c Standard LaTeX Color (DPC)
+ (/usr/local/texlive/2022/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 149.
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
+File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
+)
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 16.
+ [1
+
+{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+<FNN.png, id=22, 530.98375pt x 510.90875pt>
+File: FNN.png Graphic file (type png)
+<use FNN.png>
+Package pdftex.def Info: FNN.png  used on input line 161.
+(pdftex.def)             Requested size: 227.62206pt x 219.01604pt.
+ [3 <./FNN.png>] [4]
+<RC.png, id=32, 576.1525pt x 216.81pt>
+File: RC.png Graphic file (type png)
+<use RC.png>
+Package pdftex.def Info: RC.png  used on input line 290.
+(pdftex.def)             Requested size: 273.14923pt x 102.79062pt.
+ [5 <./RC.png>]
+<LSTM_GRU.png, id=37, 730.73pt x 420.57124pt>
+File: LSTM_GRU.png Graphic file (type png)
+<use LSTM_GRU.png>
+Package pdftex.def Info: LSTM_GRU.png  used on input line 328.
+(pdftex.def)             Requested size: 318.66948pt x 183.40906pt.
+ [6 <./LSTM_GRU.png>]
+Overfull \hbox (10.58792pt too wide) in paragraph at lines 350--350
+[]\OT1/cmr/bx/n/12 Density-based spa-tial clus-ter-ing of ap-pli-ca-tions with noise (DB-SCAN) 
+ []
+
+[7]
+Overfull \hbox (2.09001pt too wide) in paragraph at lines 397--398
+\OT1/cmr/m/n/10 elliptic en-ve-lope al-go-rithm is a distance-based anomaly de-tec-tion method that can be sum-marised as 
+ []
+
+[8] [9] (./main.aux) ) 
+Here is how much of TeX's memory you used:
+ 9655 strings out of 478268
+ 209764 string characters out of 5846347
+ 502853 words of memory out of 5000000
+ 27783 multiletter control sequences out of 15000+600000
+ 472531 words of font info for 39 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 71i,21n,79p,613b,512s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on main.pdf (9 pages, 957668 bytes).
+PDF statistics:
+ 112 PDF objects out of 1000 (max. 8388607)
+ 66 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+
