@@ -119,9 +119,10 @@ In SVMs, we want to compute the optimal linear decision boundary, which is the \
         \text{Find }\mathbf{w},b\text{ such that }\frac{2}{\lVert w \rVert}\text{ is maximum}\\
         \text{or }\min\limits_{(w,b)}\frac{1}{2}{\lVert w \rVert}^2\hspace*{0.3cm}\text{subject to}\hspace*{0.3cm}y_i(\mathbf{w}\cdot\mathbf{x}^{(i)}+b)\geq1\hspace*{0.3cm}i = 1,2,\dots,m
     \end{gather*}
+    \item Finding the hyperplane that maximizes the margin between the classes is done by minimizing a cost function, which is a convex optimization problem. Convex optimization problems have a unique global minimum, which means that the solution found by SVMs is a \textbf{global minimum}.
 \end{itemize}
 
-\subsubsection{Rgularisation}
+\subsubsection{Regularisation}
 if the data is not linearly separable, we need to introduce regularisation to allow some misclassified data points by introducing a slack variable $\varepsilon_i>0$ such that: (i) $\varepsilon_i=0$ for correctly classified (ii) $\varepsilon_i=\left| y_i-f(\mathbf{x}^{(i)})\right|$ otherwise. 
 \begin{gather*}
     \min\limits_{(w,b,\varepsilon)}\frac{1}{2}{\lVert w \rVert}^2+C\sum_{i}^{m}\varepsilon_i\hspace*{0.3cm}\text{subject to}\hspace*{0.3cm}y_i(\mathbf{w}\cdot\mathbf{x}^{(i)}+b)\geq1-\varepsilon_i\hspace*{0.3cm}\varepsilon_i\geq0\\
@@ -143,13 +144,15 @@ we resort to a theorem of functional analysis, which ensures that there exists a
 \begin{gather*}
     K(\pmb{x}^{(j)}\cdot\pmb{x}^{(i)}) = \pmb{\phi}(\pmb{x}^{(j)})\cdot\pmb{\phi}(\pmb{x}^(i))
 \end{gather*}
-where $K$ is the \textit{kernel}. $K$ suggested that we DO NOT need to increase the dimension of the feature space to include nonlinearities, we only need to apply the kernel to inner products in the original feature space. essentially finding optimal separating hyperplane without calculating anything about $\pmb{\phi(x^{(i)})}$.
+where $K$ is the \textit{kernel}. $K$ suggested that we DO NOT need to increase the dimension of the feature space to include nonlinearities, we only need to apply the kernel to inner products in the original feature space. essentially finding optimal separating hyperplane without calculating anything about $\pmb{\phi(x^{(i)})}$.\par 
+
+\textit{Kernel} can also be explained as (i) A single-channel convolution filter, (ii) A transformation of the dataset to a higher dimension.
 
 
 
 
-
-\section{Feedforward Neural Network}
+\section{Neural Network}
+\subsection{Feedforward Neural Network}
 \textit{Neural Network generalise the principle of linearly combining simple nonlinear functions}
 \begin{gather*}
     y\approx h(x:\theta)
@@ -158,10 +161,10 @@ function that maps input data "x" to output "y", with the function parameters re
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width =0.5\textwidth]{FNN.png}
+    \includegraphics[width =0.6\textwidth]{FNN.png}
 \end{figure}
 
-\subsection{Mathematical expression}
+\subsubsection{Mathematical expression}
 \begin{itemize}
     \item Input layer $\rightarrow$ First hidden layer
         \begin{gather*}
@@ -226,7 +229,7 @@ function that maps input data "x" to output "y", with the function parameters re
             \end{gather*}
 \end{itemize}
 
-\subsection{Number of parameters}
+\subsubsection{Number of parameters}
 \begin{gather*}
     \begin{split}
         \text{n. of parameters} &= \underbrace{(s_0+1)\times s_1}_{(N+1)\times 2} + \underbrace{(s_1+1)\times s_2}_{3\times 3} + \underbrace{(s_2+1)\times s_3}_{4\times 2} = (N+1)\times 2+17\\
@@ -234,14 +237,14 @@ function that maps input data "x" to output "y", with the function parameters re
     \end{split}
 \end{gather*}
 
-\subsection{Training}
+\subsubsection{Training}
 Training dataset (60-8-\%), Validation (10-20\%), and test (10-20\%)\par 
 
 Initialise $\Rightarrow$ Forward propagation $\Rightarrow$ Backpropagation $\Rightarrow$ Update $\Rightarrow$ Repeat until convergence
 
 
 
-\section{Convolution Neural Network}
+\subsection{Convolution Neural Network}
 Drawbacks from feed-forward neural networks 
 \begin{itemize}
     \item textit{fully connected} layers not suitable for images: contains too many parameters  
@@ -263,10 +266,10 @@ Generic process
     where $K$ is the number of filters (also =number of feature maps)
 \end{itemize}
 
-\section{Sequence Modelling}
+\subsection{Sequence Modelling}
 When both the data and its order contain information to perform the task, the points in the dataset are dependent on the position of other points in the dataset, e.g., speech recognition, DNA, time series. We lose key information if we shuffle the data.
 
-\subsection{Sequence modelling with feedforward neural network}
+\subsubsection{Sequence modelling with feedforward neural network}
 Consider time as \textbf{feature (inputs)}, and the physical variable as \textbf{label}, may be OK for short time series, but generally not a good approach due to:
 \begin{itemize}
     \item do not learn correlation as opposed to dynamical system having temporal correlations, and patterns. 
@@ -296,22 +299,28 @@ Store the previous time-step and feed it to the next time step as the hidden sta
             J = \sum_{i=0}^{N}J^{<N>}\\
             \frac{\partial J}{\partial a^{<i>}} = \frac{\partial J}{\partial a^{<N>}}\frac{\partial a^{<N>}}{\partial a^{<N-1>}}\dots\frac{\partial a^{<i+1>}}{\partial a^{<i>}} = \frac{\partial J}{\partial a^{<N>}}\underbrace{\theta_a\theta_a\dots\theta_a}_{N-i\text{ times}} = \frac{\partial J}{\partial a^{<N>}}\theta_a^{N-1}
         \end{gather*}
-    \item Unstable gradient occurs from above equation, when $\theta_a$ is small, the gradient will become smaller and leads to \textbf{vanishing gradient} problem,  make it difficult for the network to remember information from previous time steps. This can be solved by using ReLU activation functions due to its unbounded positive range. 
+    \item Unstable gradient occurs from above equation, when $\theta_a$ is small, the gradient will become smaller and leads to \textbf{vanishing gradient} problem,  make it difficult for the network to remember information from previous time steps. This can be avoid by skipping some connections between layers an units, or adding a cell state to each recurrent cell. 
     \item If $\theta_a$ is large, this leads to exploding gradient, which can be solved by clip (rescale) the gradient
     \item Recurrent neural network are not ideal for learning temporal correlations in long time series due to short-term memory. 
 \end{itemize}
 
 \boxed{\textbf{NOTE:}}
 \begin{itemize}
-    \item 3D tensor with shape (batch\_size, sequence\_length, input\_dim).
+    \item 3D tensor with shape \textbf{(batch\_size, sequence\_length, input\_dim)}.
     \item \underline{\textbf{example}} refers to a sequence of input data, where each element in the sequence is a time step, e.g., audio clip, where each time step is a small segment of the audio waveform.
         \begin{itemize}
             \item In recurrent networks examples have to be input one at a time so that data in each forward propagation is still, effectively, one-dimensional
         \end{itemize}
     \item \underline{\textbf{feature}} refer to the characteristics of each time step or input element in the sequence, e.g. spectral representations of the audio waveform.
+    \item \textbf{Windowing:} windowing refers to a technique of processing input data by using a sliding window over a sequence of data points. The window size determines how many data points are included in each window, and the sliding step determines how many data points the window moves forward for the next iteration. The purpose being:
+        \begin{itemize}
+            \item Effectively increasing the number of examples.
+            \item Allowing to make predictions at any point during a sequence.
+            \item Reducing the amount of data analysed at each iteration.
+        \end{itemize}
 \end{itemize}
 
-\subsection{Long-short time memory units LSTMs}
+\subsubsection{Long-short time memory units LSTMs}
 Introducing a \textit{cell state C} to convey (store) information from the far past -- long term memory, with the combination of the same short-memory past. 
 \begin{itemize}
     \item Consists of three gates to control the status of the states (forget, input, output). Each gate is controlled by a \textbf{sigmoid} activation function, due to the extreme nature of being either 1 or 0.
@@ -321,7 +330,7 @@ Introducing a \textit{cell state C} to convey (store) information from the far p
     \item \textbf{Output gate} calculates the potential long term memory from the cell state using a tanh function. Then, a sigmoid function is also used to determine what percentage of this potential long term memory is pass on as an output of the LSTM unit. 
 \end{itemize}
 
-\subsection{Gated recurrent units GRUs}
+\subsubsection{Gated recurrent units GRUs}
 \begin{itemize}
     \item got rid of the cell state, and stored both long and short term memory in the \textbf{hidden state} and consists of 2 gates only.
     \item \textbf{Update gate} controls both the \textit{input} and \textit{forget} gate in determining what to forget and what to add on. 
@@ -337,7 +346,14 @@ Introducing a \textit{cell state C} to convey (store) information from the far p
 \end{figure}
 
 \boxed{\textbf{NOTE:}}\par
-A GRU layer takes as \underline{input} a 3D tensor of shape \textbf{(B, T, F)}, where B is the batch size, T is the number of timestep in each sequence, and F is the number of features in each timestep. It processes each timestep in the input sequence independently and generates an output for each timestep. Therefore, the \underline{output} of the GRU layer will also be a 3D tensor of shape \textbf{(B, T, N)}, where N is the number of neurons in the layer.
+A GRU layer takes as \underline{input} a 3D tensor of shape \textbf{(B, T, F)}, where B is the batch size, T is the number of timestep in each sequence, and F is the number of features in each timestep. It processes each timestep in the input sequence independently and generates an output for each timestep. Therefore, the \underline{output} of the GRU layer will also be a 3D tensor of shape \textbf{(B, T, N)}, where N is the number of neurons in the layer.\par 
+
+Types of label and its output size:
+\begin{itemize}
+    \item \textbf{Binary label:} For binary classification tasks, the output size of a neural network is usually 1, representing the probability of belonging to one of the two classes
+    \item \textbf{Categorical label:} For multi-class classification tasks, the output size of a neural network is usually equal to the number of classes.
+    \item \textbf{One-Hot encoding label:} When using one-hot encoding for multi-class classification tasks, the output size of a neural network is also equal to the number of classes, each output is binary (0 1)
+\end{itemize}
 
 \section{Unsupervised Learning}
 Methods that do not require labelled dataset. \textbf{Clustering} groups the instances based on their similarity without class labels.
@@ -381,6 +397,14 @@ Hierarchical clustering does not required user input cluster numbers, it does it
     \item \textbf{Merge} the closest pair into a new cluster, which is located midway its original instance. 
     \item \textbf{Repeat} Step 1-2 with $m-1$ instances. 
     \item \textbf{Stop} when left with one cluster.  
+\end{itemize}
+
+\subsection{Autoencoder}
+Autoencoders are a type of neural network used for unsupervised learning, \textbf{dimensionality reduction}, and \textbf{data compression}. Composed of two main parts:
+\begin{itemize}
+    \item \textbf{Encoder:} takes the input data and maps it to a lower-dimensional representation. The lowest level is called the bottleneck. 
+    \item \textbf{Decoder:} takes this representation and maps it back to the original input data
+    \item it can perform (i)\textbf{feature reduction} and (ii) \textbf{image correction} (e.g., removal of creases in scanned documents).
 \end{itemize}
 
 \subsection{Elliptic envelope for anomaly detection}
