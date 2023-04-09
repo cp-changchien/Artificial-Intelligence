@@ -263,8 +263,6 @@ Generic process
     where $K$ is the number of filters (also =number of feature maps)
 \end{itemize}
 
-
-
 \section{Sequence Modelling}
 When both the data and its order contain information to perform the task, the points in the dataset are dependent on the position of other points in the dataset, e.g., speech recognition, DNA, time series. We lose key information if we shuffle the data.
 
@@ -301,7 +299,16 @@ Store the previous time-step and feed it to the next time step as the hidden sta
     \item Unstable gradient occurs from above equation, when $\theta_a$ is small, the gradient will become smaller and leads to \textbf{vanishing gradient} problem,  make it difficult for the network to remember information from previous time steps. This can be solved by using ReLU activation functions due to its unbounded positive range. 
     \item If $\theta_a$ is large, this leads to exploding gradient, which can be solved by clip (rescale) the gradient
     \item Recurrent neural network are not ideal for learning temporal correlations in long time series due to short-term memory. 
+\end{itemize}
+
+\boxed{\textbf{NOTE:}}
+\begin{itemize}
     \item 3D tensor with shape (batch\_size, sequence\_length, input\_dim).
+    \item \underline{\textbf{example}} refers to a sequence of input data, where each element in the sequence is a time step, e.g., audio clip, where each time step is a small segment of the audio waveform.
+        \begin{itemize}
+            \item In recurrent networks examples have to be input one at a time so that data in each forward propagation is still, effectively, one-dimensional
+        \end{itemize}
+    \item \underline{\textbf{feature}} refer to the characteristics of each time step or input element in the sequence, e.g. spectral representations of the audio waveform.
 \end{itemize}
 
 \subsection{Long-short time memory units LSTMs}
@@ -329,6 +336,8 @@ Introducing a \textit{cell state C} to convey (store) information from the far p
     \includegraphics[width =0.7\textwidth]{LSTM_GRU.png}
 \end{figure}
 
+\boxed{\textbf{NOTE:}}\par
+A GRU layer takes as \underline{input} a 3D tensor of shape \textbf{(B, T, F)}, where B is the batch size, T is the number of timestep in each sequence, and F is the number of features in each timestep. It processes each timestep in the input sequence independently and generates an output for each timestep. Therefore, the \underline{output} of the GRU layer will also be a 3D tensor of shape \textbf{(B, T, N)}, where N is the number of neurons in the layer.
 
 \section{Unsupervised Learning}
 Methods that do not require labelled dataset. \textbf{Clustering} groups the instances based on their similarity without class labels.
@@ -379,13 +388,11 @@ Using Gaussian density distribution as an approach to identify outliers.
 \subsubsection{Multivariate Gaussian distribution}
 A column vector of random variable (feature), $\pmb{X} = [X_1, X_2, \dots, X_N]^T$ is Gaussian distributed. 
 \begin{gather*}
-    f_{\pmb{x}}(\pmb{x}) = \frac{1}{\sqrt{(2\pi)^N\text{det}(\Sigma)}}\text{exp}\Big(-\frac{\lVert\pmb{x-\mu}\rVert^2_\Sigma}{2}\Big)
-\end{gather*}
-where $\pmb{\mu}$ is the column-vector if the means, 
-\begin{gather*}
+    f_{\pmb{x}}(\pmb{x}) = \frac{1}{\sqrt{(2\pi)^N\text{det}(\Sigma)}}\text{exp}\Big(-\frac{\lVert\pmb{x-\mu}\rVert^2_\Sigma}{2}\Big),
+    \hspace*{0.7cm}
     \pmb{\mu}=\frac{1}{m}\sum_{i=1}^{m}\pmb{x}^{(i)}
 \end{gather*}
-and $\Sigma$ is the \textbf{covariance matrix}, which can be computed from a sample, $m$, as (usually presented as matrix). Covariance matrix is \textbf{symmetric} and can give insights into whether the variable are correlated (only diagonal values, or the principal axes of the ellipsoid is not parallel to the feature axis), or uncorrelated (non-diagonal). it also represents the eigenvalues, which are non-negative.
+where $\pmb{\mu}$ is the column-vector if the means and $\Sigma$ is the \textbf{covariance matrix}, which can be computed from a sample, $m$, as (usually presented as matrix). Covariance matrix is \textbf{symmetric} and can give insights into whether the variable are correlated (only diagonal values, or the principal axes of the ellipsoid is not parallel to the feature axis), or uncorrelated (non-diagonal). it also represents the eigenvalues, which are non-negative.
 \begin{gather*}
     \pmb{\Sigma} = \frac{1}{m-1}\sum_{i=1}^{m}(\pmb{x}^{(i)}-\pmb{\mu})(\pmb{x}^{(i)}-\pmb{\mu})^T
 \end{gather*}
@@ -425,7 +432,6 @@ Decision tree is constructed in the learning process node by node. The following
                 label & pass & fail & pass & fail & fail & pass & fail & fail \\ \hline
                 \end{tabular}
             \end{table}
-            \vspace*{-0.3cm}
             \begin{table}[hbt]
                 \centering
                 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
@@ -445,15 +451,30 @@ Decision tree is constructed in the learning process node by node. The following
                 IG(feature) = H(\text{label}) - H(\text{label}, feature)
             \end{gather*}
         \end{itemize}
+        \vspace*{-0.4cm}
     \item Gini Impurity Criterion
         \begin{itemize}
             \item How often a randomly chosen element from the set is incorrectly labelled. Higher GI, higher chance of misclassification
             \begin{gather*}
                 GI = 1-\sum_{i=0}^{J}P_i^2
             \end{gather*}
+            \vspace*{-0.4cm}
             \item Split with the lowest weighted FI for the child trees to achieve largest reduction in GI.
         \end{itemize}
     \item Shallow trees has less variance but higher bias. Deep trees has less bias but more prone to overfitting. 
+\end{itemize}
+
+\boxed{\textbf{NOTE:}}\par
+For a classification model, high variance $\rightarrow$ overfitting, high bias $\rightarrow$ underfitting. 
+\begin{itemize}
+    \item If the model classifies only yellow helicopters as a helicopter.
+        \begin{itemize}
+            \item It is overfitting (high variance). This is because the model may be too complex and, thus, it fits features that are not relevant to the classification (the colour).
+        \end{itemize}
+    \item If the model classifies any round object as a helicopter.
+        \begin{itemize}
+            \item It is underfitting (high bias). This is because the model is unable to learn more complex feature, such as the bladed, the helicopter tail, etc.
+        \end{itemize}
 \end{itemize}
 
 

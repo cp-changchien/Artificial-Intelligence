@@ -17,6 +17,8 @@
         "overfitting",
         "SVMs",
         "testpoints",
-        "underfit"
+        "timestep",
+        "underfit",
+        "underfitting"
     ]
 }
