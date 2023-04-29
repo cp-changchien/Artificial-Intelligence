@@ -244,8 +244,16 @@ function that maps input data "x" to output "y", with the function parameters re
     \end{split}
 \end{gather*}
 
+\subsubsection{Forward propagation}
+\textit{forward propagation} is the evaluation of the loss function from left to right during each iteration. 
+\begin{gather*}
+    J(\pmb{\theta}) = -\frac{1}{m}\sum_{i=1}^{m}\sum_{k=1}^{K}\Bigg[y_k^{(i)}\ln\Big(h_k(\pmb{x}^{(i)})+(1-y_k^{(i)})\ln\Big(1-h_k(\pmb{x}^{(i)})\Big)\Big)+\frac{\lambda}{2}\sum_{l=0}^{L}\sum_{a=0}^{s_L}\sum_{b=1}^{s_{L+1}}(\theta_{a,b}^{(l)})^2\Bigg]\\
+    J(\pmb{\theta}) = \frac{1}{2m}\Bigg[\sum_{i=1}^{m}\sum_{k=1}^{K}\Big(h_k(\pmb{x}^{(i)})-y_k^{(i)}\Big)^2+\lambda\sum_{l=0}^{L}\sum_{a=0}^{s_L}\sum_{b=1}^{s_{L+1}}(\theta_{a,b}^{(l)})^2\Bigg]
+\end{gather*}
+Because neural networks contains nonlinear functions, the loss functions are typically \underline{\textbf{non-convex}}, a local minimum is therefore \underline{\textbf{not necessarily a global minimum}}. 
+
 \subsubsection{Training}
-Training dataset (60-8-\%), Validation (10-20\%), and test (10-20\%)\par 
+Training dataset (60-80\%), Validation (10-20\%), and test (10-20\%)\par 
 
 Initialise $\Rightarrow$ Forward propagation $\Rightarrow$ Backpropagation $\Rightarrow$ Update $\Rightarrow$ Repeat until convergence
 
