@@ -504,9 +504,9 @@ Decision tree is constructed in the learning process node by node. The following
                 GI = 1-\sum_{i=0}^{J}P_i^2
             \end{gather*}
             \vspace*{-0.4cm}
-            \item Split with the lowest weighted FI for the child trees to achieve largest reduction in GI.
+            \item Split with the lowest weighted GI for the child trees to achieve largest reduction in GI.
         \end{itemize}
-    \item Shallow trees has less variance but higher bias. Deep trees has less bias but more prone to overfitting. 
+    \item \underline{Shallow} trees has less variance but higher bias. \underline{Deep} trees has less bias but more prone to overfitting. 
 \end{itemize}
 
 \boxed{\textbf{NOTE:}}\par
@@ -528,7 +528,7 @@ finds an optimal direction (principle axis of the ellipsoid in gaussian distribu
 
 The difference between PCA and linear regression is:
 \begin{itemize}
-    \item The sensitivity on how you define input and output is large ($y=ax+b or x = ay+b$), provides very different result
+    \item The sensitivity on how you define input and output is large ($y=ax+b$ or $x = ay+b$), provides very different result
     \item linear regression is sensitive to outliers
     \item The errors in PCA are orthogonal to the principal axis.
 \end{itemize}
