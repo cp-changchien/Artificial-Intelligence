@@ -378,10 +378,10 @@ Given a set of vector-valued data, $\mathbf{x}^{(i)}$, with the goal of grouping
     \item \textbf{Choose a metric (distance function)}. This quantitatively defines the notion of \textit{similarity} by measuring the distance between points in the \textit{feature space}. The distance are usually calculated using the squared Euclidean distance $\lVert\cdot\rVert^2$.
     \item \textbf{Choose number of clusters, $k$}
     \item \textbf{Choose the centroids} These are the baricentres (means), $\mu_j$, of the clusters, representing the positions of the clusters. 
-    \item \textbf{Compute the distance and Assign} of each instance with respect to each centroid, $\lVert\pmb{x}^{(i)}-\pmb{\mu}_j\rVert^2$ for $i=1,2,\dots, k$.
-    \item \textbf{Compute the baricentre} of each centroid, $\mu_{j,new}=1/N_j\sum_{j=1}^{N_j}\pmb{x}^{(j)}$, where $N_j$ is the number of points, $\pmb{x}^{(i)}$, that belong in cluster j. Therefore, $\sum_{i=1}^{k}N_i=m$. 
+    \item \textbf{Compute the distance} of each instance with respect to each centroid, $\lVert\pmb{x}^{(i)}-\pmb{\mu}_j\rVert^2$ for $i=1,2,\dots, k$. \textbf{Assign} each instance $\pmb{x}^{(i)}$ to the closest centroid $j$.
+    \item \textbf{Compute the baricentre} of each centroid, $\mu_{j,new}=1/N_j\sum_{j=1}^{N_j}\pmb{x}^{(j)}$, where $N_j$ is the number of points, $\pmb{x}^{(j)}$, that belong in cluster j. Therefore, $\sum_{i=1}^{k}N_i=m$. 
     \item \textbf{Update centroid}. The new centroid is the baricentre from the previous new mean. 
-    \item Compute the new distance, under the mean distance from the centroid stops changing. 
+    \item Compute the new distance, until the mean distance from the centroid stops changing. 
 \end{itemize}
 
 Although k-means algorithm presents a fast and effective method to cluster data points, it has some limits: (i) though the algorithm is guaranteed to converge, it might not be the globally optimal solution, mainly because it depends on the initial centroid initialisation and numbers of cluster chosen. (ii) it noes not perform well when clusters have varying sizes.\par 
@@ -427,11 +427,12 @@ Using Gaussian density distribution as an approach to identify outliers.
 \subsubsection{Multivariate Gaussian distribution}
 A column vector of random variable (feature), $\pmb{X} = [X_1, X_2, \dots, X_N]^T$ is Gaussian distributed. 
 \begin{gather*}
-    f_{\pmb{x}}(\pmb{x}) = \frac{1}{\sqrt{(2\pi)^N\text{det}(\Sigma)}}\text{exp}\Big(-\frac{\lVert\pmb{x-\mu}\rVert^2_\Sigma}{2}\Big),
+    f_{\pmb{x}}(\pmb{x}) = \frac{1}{\sqrt{(2\pi)^N\text{det}(\pmb{\Sigma})}}\text{exp}\Big(-\frac{\lVert\pmb{x-\mu}\rVert^2_{\pmb{\Sigma}}}{2}\Big)\sim \mathcal{N}(\pmb{\mu},\pmb{\Sigma}) ,
     \hspace*{0.7cm}
     \pmb{\mu}=\frac{1}{m}\sum_{i=1}^{m}\pmb{x}^{(i)}
 \end{gather*}
-where $\pmb{\mu}$ is the column-vector if the means and $\Sigma$ is the \textbf{covariance matrix}, which can be computed from a sample, $m$, as (usually presented as matrix). Covariance matrix is \textbf{symmetric} and can give insights into whether the variable are correlated (only diagonal values, or the principal axes of the ellipsoid is not parallel to the feature axis), or uncorrelated (non-diagonal). it also represents the eigenvalues, which are non-negative.
+where $\pmb{\mu}$ is the column-vector if the means and $\Sigma$ is the \textbf{covariance matrix}, which can be computed from a sample, $m$ (usually presented as matrix). Covariance matrix is \underline{\textbf{(1) symmetric}} and \underline{\textbf{(2) positive}}, which also represents the eigenvalues.\par
+If the covariance matrix is \underline{\textbf{diagonal}} (only entries on the diagonal), then both variables are \underline{\textbf{uncorrelated}}. (different entries in the diagonal causes the circle to skew to ellipse). If the matrix is \underline{\textbf{non-diagonal}} (full) and the principal axis of the ellipse is not parallel to the frame axis, then both variables are \underline{\textbf{correlated}}
 \begin{gather*}
     \pmb{\Sigma} = \frac{1}{m-1}\sum_{i=1}^{m}(\pmb{x}^{(i)}-\pmb{\mu})(\pmb{x}^{(i)}-\pmb{\mu})^T
 \end{gather*}
