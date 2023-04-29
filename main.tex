@@ -9,7 +9,7 @@
 \usepackage[top=1.5cm,bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{siunitx}
 \usepackage[parfill]{parskip}
-\usepackage{multirow,float}
+\usepackage{multirow,float,amssymb}
 \setlength{\parskip}{1em}
 
 
@@ -474,7 +474,7 @@ Decision tree is constructed in the learning process node by node. The following
             \end{table}
             \begin{table}[hbt]
                 \centering
-                \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+                \begin{tabular}{|c|c|c|c|c||c|c|c|c|}
                 \hline
                 $x_1$ & 3 & 6 & 3 & 6 & 7 & 4 & 5 & 3 \\ \hline
                 $x_2$ & 3 & 4 & 5 & 5 & 6 & 8 & 8 & 9 \\ \hline
@@ -484,11 +484,16 @@ Decision tree is constructed in the learning process node by node. The following
             In this case, we can place a separation line at $x_2\geq6$ to better separate the fail by one node. 
             \item \textbf{Entropy} can be used to evaluate the difficulty of predicting category.
             \begin{gather*}
-                H = -\sum_{i = 1}^{n}(p_i log_2p_i)
+                H(\text{label}) = -\sum_{i = 1}^{n}(p_i log_2p_i) = -\frac{3}{8}\log_2\frac{3}{8}-\frac{5}{8}\log_2\frac{5}{8} = 0.954
+            \end{gather*}
+            for the above example, the entropy for the separate cases are:
+            \begin{gather*}
+                H(\text{label},x2<6) = H_{<6} = -\frac{3}{4}\log_2\frac{3}{4}-\frac{1}{4}\log_2\frac{1}{4}=0.81,\hspace*{0.4cm}H(\text{label},x2\geq6) = H_{\geq6} = -\log_21 = 0\\[0.2cm]
+                \therefore\hspace*{0.2cm}H(\text{label},x2) = 0.5H_{<6}+0.5H_{\geq6} = 0.405
             \end{gather*}
             The aim is to find features with \textbf{highest information gain} (this feature will be split into children nodes to further). \textbf{IG} is \textbf{highest} when splitting the feature makes the biggest reduction in entropy.
             \begin{gather*}
-                IG(feature) = H(\text{label}) - H(\text{label}, feature)
+                IG(feature) = H(\text{label}) - H(\text{label}, feature) = 0.954-0.405 = 0.549
             \end{gather*}
         \end{itemize}
         \vspace*{-0.4cm}
