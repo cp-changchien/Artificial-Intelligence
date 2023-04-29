@@ -9,7 +9,7 @@
 \usepackage[top=1.5cm,bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{siunitx}
 \usepackage[parfill]{parskip}
-\usepackage{multirow}
+\usepackage{multirow,float}
 \setlength{\parskip}{1em}
 
 
@@ -70,7 +70,7 @@ A good machine learning model should have a good \textit{bias-variance trade-off
 \begin{gather*}
     J(\theta_0. \theta_1) = \frac{1}{2}\frac{1}{m}\sum_{i=1}^{m}\Big(h(x^{(i)})-y_i\Big)^2 + \lambda\sum_{j=1}^{N}\theta_j^2
 \end{gather*}
-If $\lambda$ is small, large values of $\sum_{j=1}^{N}\theta_j^2$ are allowed, meaning that the model contains too many parameters, thus it can \textbf{overfit}. If $\lambda$ is large, only small values of $\sum_{j=1}^{N}\theta_j^2$ are allowed. This means that the training will reduce the number of parameters, this it might underfit. 
+If $\lambda$ is small, large values of $\sum_{j=1}^{N}\theta_j^2$ are allowed, meaning that the model contains too many parameters, thus it can \textbf\underline{{overfit}} (training error small, generalization error unacceptably large, high variance). If $\lambda$ is large, only small values of $\sum_{j=1}^{N}\theta_j^2$ are allowed. This means that the training will reduce the number of parameters, this it might \underline{\textbf{underfit}} (training error is too large, high bias). 
 
 \section{Logistic Regression}
 \begin{itemize}
@@ -84,9 +84,12 @@ If $\lambda$ is small, large values of $\sum_{j=1}^{N}\theta_j^2$ are allowed, m
             J(\theta) = -\frac{1}{m}\sum_{i=1}^{m}\Big\{y_i ln\Big[h(x^{(i)})\Big] + (1-y_i)ln\Big[1-h(x^{(i)})\Big]\Big\}
         \end{gather*}
     \item \textbf{Gradient descent} for logistic Regression:\par
-    Choose a starting point $\Rightarrow$ Calculate hte gradient $\Rightarrow$ Update and repeat. 
+    Choose a starting point $\Rightarrow$ Calculate the gradient $\Rightarrow$ Update and repeat. 
     \item If encounter \textbf{multi-class}, perform the same as many times as the number of categories of logistic regressions, each of which splits the data into two classes. End up with the same number of Hypothesis functions, select the highest probability.
-    \item Metrics for classification 
+    \item Metrics for classification
+        \begin{itemize}
+            \item Precision = $\frac{\text{True Positives}}{\text{True Positives+False positives}}$;\hspace*{0.5cm}Recall = $\frac{\text{True Positives}}{\text{True Positives+False negatives}}$
+        \end{itemize}
         \begin{table}[hbt]
             \centering
             \begin{tabular}{lcccl}
@@ -105,7 +108,7 @@ If $\lambda$ is small, large values of $\sum_{j=1}^{N}\theta_j^2$ are allowed, m
 \end{itemize}
 
 \subsection{Supporting Vector Machines (SVMs)}
-In SVMs, we want to compute the optimal linear decision boundary, which is the \textbf{hyperplane} with the largest margin between the two classes.
+In SVMs, we want to compute the \underline{\textbf{optimal linear decision boundary}}, which is the \textbf{hyperplane} with the largest margin between the two classes.
 \begin{itemize}
     \item Support hyperplanes (optimal hyperplane between two points)
     \begin{gather*}
@@ -121,6 +124,10 @@ In SVMs, we want to compute the optimal linear decision boundary, which is the \
     \end{gather*}
     \item Finding the hyperplane that maximizes the margin between the classes is done by minimizing a cost function, which is a convex optimization problem. Convex optimization problems have a unique global minimum, which means that the solution found by SVMs is a \textbf{global minimum}.
 \end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width =0.55\textwidth]{svm.png}
+\end{figure}
 
 \subsubsection{Regularisation}
 if the data is not linearly separable, we need to introduce regularisation to allow some misclassified data points by introducing a slack variable $\varepsilon_i>0$ such that: (i) $\varepsilon_i=0$ for correctly classified (ii) $\varepsilon_i=\left| y_i-f(\mathbf{x}^{(i)})\right|$ otherwise. 

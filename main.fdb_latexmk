@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1682574839 "/Users/cooper/Desktop/AE4 (2022-2023)/Modules/AERO70026 - A.I. for Aerospace Engineers/notes/main.tex" "main.pdf" "main" 1682574840
-  "/Users/cooper/Desktop/AE4 (2022-2023)/Modules/AERO70026 - A.I. for Aerospace Engineers/notes/main.tex" 1682574838 31914 53a073619819d9520e52a2f887d0fd7f ""
+["pdflatex"] 1682760164 "/Users/cooper/Desktop/AE4 (2022-2023)/Modules/AERO70026 - A.I. for Aerospace Engineers/notes/main.tex" "main.pdf" "main" 1682760166
+  "/Users/cooper/Desktop/AE4 (2022-2023)/Modules/AERO70026 - A.I. for Aerospace Engineers/notes/main.tex" 1682689789 32432 c230816cea7d9713d365dcd8555e32f5 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -49,6 +49,7 @@
   "/usr/local/texlive/2022/texmf-dist/tex/latex/caption/subcaption.sty" 1645391520 11546 6c5257d230d8c5626812b45bc2f31212 ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1579991033 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/etoolbox/etoolbox.sty" 1601931149 46845 3b58f70c6e861a13d927bff09d35ecbc ""
+  "/usr/local/texlive/2022/texmf-dist/tex/latex/float/float.sty" 1137110151 6749 16d2656a1984957e674b149555f1ea1d ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty" 1578002852 41601 9cf6c5257b1bc7af01a58859749dd37a ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/graphics-cfg/color.cfg" 1459978653 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
   "/usr/local/texlive/2022/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1465944070 1224 978390e9c2234eab29404bc21b268d1e ""
@@ -74,11 +75,12 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1665157324 2826439 51a12c89b2da45b68d72a13770e045cc ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "FNN.png" 1681017782 78953 90d0400a3b9cece87a58e5bc086d0648 ""
+  "FNN.png" 1682760142 626871 2cdb4bb1aa91b3b4b7d486213c92300c ""
   "LSTM_GRU.png" 1680760314 841502 c6c4e0878d21cd3fe8a96e7dd31aa78e ""
   "RC.png" 1680753750 19761 73a831ef9c7ca6489dc98acee4185da2 ""
-  "main.aux" 1682574840 3465 d34e632af82087b257db9a569ae174c9 "pdflatex"
-  "main.tex" 1682574838 31914 53a073619819d9520e52a2f887d0fd7f ""
+  "main.aux" 1682760166 3465 250c9205261bcf7df6cf1a368cd5a256 "pdflatex"
+  "main.tex" 1682689789 32432 c230816cea7d9713d365dcd8555e32f5 ""
+  "svm.png" 1682689706 687381 e7c2e20771432da2f662a254c23019f0 ""
   (generated)
   "main.aux"
   "main.log"

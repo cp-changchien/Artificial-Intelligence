@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.7)  27 APR 2023 13:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.7)  29 APR 2023 10:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -230,6 +230,13 @@ Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@cntb=\count292
 \multirow@dima=\skip57
 \bigstrutjot=\dimen174
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count293
+\float@exts=\toks26
+\float@box=\box62
+\@float@everytoks=\toks27
+\@floatcapt=\box63
 ) (./main.aux)
 \openout1 = `main.aux'.
 
@@ -249,17 +256,17 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
  (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count293
+\scratchcounter=\count294
 \scratchdimen=\dimen175
-\scratchbox=\box62
-\nofMPsegments=\count294
-\nofMParguments=\count295
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count296
+\scratchbox=\box64
+\nofMPsegments=\count295
+\nofMParguments=\count296
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count297
 \MPscratchDim=\dimen176
-\MPnumerator=\count297
-\makeMPintoPDFobject=\count298
-\everyMPtoPDFconversion=\toks27
+\MPnumerator=\count298
+\makeMPintoPDFobject=\count299
+\everyMPtoPDFconversion=\toks29
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -267,6 +274,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 *geometry* driver: auto-detecting
@@ -315,48 +323,54 @@ File: translations-basic-dictionary-english.trsl (english translation file `tran
 Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 16.
  [1
 
-{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<FNN.png, id=22, 529.98pt x 246.9225pt>
+{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<svm.png, id=19, 822.07124pt x 715.67375pt>
+File: svm.png Graphic file (type png)
+<use svm.png>
+Package pdftex.def Info: svm.png  used on input line 129.
+(pdftex.def)             Requested size: 250.38564pt x 217.97986pt.
+ [2 <./svm.png>]
+<FNN.png, id=25, 1037.8775pt x 532.99126pt>
 File: FNN.png Graphic file (type png)
 <use FNN.png>
-Package pdftex.def Info: FNN.png  used on input line 164.
-(pdftex.def)             Requested size: 364.19667pt x 169.68343pt.
- [3 <./FNN.png>] [4]
-<RC.png, id=32, 576.1525pt x 216.81pt>
+Package pdftex.def Info: FNN.png  used on input line 171.
+(pdftex.def)             Requested size: 364.19667pt x 187.02957pt.
+ [3] [4 <./FNN.png>]
+<RC.png, id=34, 576.1525pt x 216.81pt>
 File: RC.png Graphic file (type png)
 <use RC.png>
-Package pdftex.def Info: RC.png  used on input line 291.
+Package pdftex.def Info: RC.png  used on input line 298.
 (pdftex.def)             Requested size: 273.14923pt x 102.79062pt.
  [5 <./RC.png>]
-<LSTM_GRU.png, id=37, 730.73pt x 420.57124pt>
+<LSTM_GRU.png, id=39, 730.73pt x 420.57124pt>
 File: LSTM_GRU.png Graphic file (type png)
 <use LSTM_GRU.png>
-Package pdftex.def Info: LSTM_GRU.png  used on input line 345.
+Package pdftex.def Info: LSTM_GRU.png  used on input line 352.
 (pdftex.def)             Requested size: 318.66948pt x 183.40906pt.
- [6 <./LSTM_GRU.png>]
-Overfull \hbox (10.58792pt too wide) in paragraph at lines 376--376
+ [6] [7 <./LSTM_GRU.png>]
+Overfull \hbox (10.58792pt too wide) in paragraph at lines 383--383
 []\OT1/cmr/bx/n/12 Density-based spa-tial clus-ter-ing of ap-pli-ca-tions with noise (DB-SCAN) 
  []
 
-[7]
-Overfull \hbox (2.09001pt too wide) in paragraph at lines 429--430
+[8]
+Overfull \hbox (2.09001pt too wide) in paragraph at lines 436--437
 \OT1/cmr/m/n/10 elliptic en-ve-lope al-go-rithm is a distance-based anomaly de-tec-tion method that can be sum-marised as 
  []
 
-[8] [9] [10] (./main.aux) ) 
+[9] [10] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 9656 strings out of 478268
- 209782 string characters out of 5846347
- 502855 words of memory out of 5000000
- 27784 multiletter control sequences out of 15000+600000
+ 9727 strings out of 478268
+ 210962 string characters out of 5846347
+ 504383 words of memory out of 5000000
+ 27850 multiletter control sequences out of 15000+600000
  472531 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,21n,79p,613b,512s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 71i,21n,79p,623b,512s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (10 pages, 896863 bytes).
+Output written on main.pdf (10 pages, 1806394 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
+ 117 PDF objects out of 1000 (max. 8388607)
  68 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
