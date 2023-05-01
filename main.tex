@@ -70,7 +70,7 @@ A good machine learning model should have a good \textit{bias-variance trade-off
 \begin{gather*}
     J(\theta_0. \theta_1) = \frac{1}{2}\frac{1}{m}\sum_{i=1}^{m}\Big(h(x^{(i)})-y_i\Big)^2 + \lambda\sum_{j=1}^{N}\theta_j^2
 \end{gather*}
-If \underline{$\lambda$ is small}, large values of $\sum_{j=1}^{N}\theta_j^2$ are allowed, meaning that the model contains too many parameters, thus it can \underline{\textbf{overfit}} (training error small, generalization error unacceptably large, high variance). If \underline{$\lambda$ is large}, only small values of $\sum_{j=1}^{N}\theta_j^2$ are allowed. This means that the training will reduce the number of parameters, this it might \underline{\textbf{underfit}} (training error is too large, high bias). 
+If \underline{$\lambda$ is small}, large values of $\sum_{j=1}^{N}\theta_j^2$ are allowed, meaning that the model contains too many parameters, thus it can \underline{\textbf{overfit}} (training error small, generalization error unacceptably large, high variance). If \underline{$\lambda$ is large}  , only small values of $\sum_{j=1}^{N}\theta_j^2$ are allowed. This means that the training will reduce the number of parameters, this it might \underline{\textbf{underfit}} (training error is too large, high bias). 
 
 \section{Logistic Regression}
 \begin{itemize}
@@ -107,6 +107,22 @@ If \underline{$\lambda$ is small}, large values of $\sum_{j=1}^{N}\theta_j^2$ ar
         \end{table}
 \end{itemize}
 
+\boxed{\textbf{NOTE:}}\par
+For a classification model, high variance $\rightarrow$ overfitting, high bias $\rightarrow$ underfitting. 
+\begin{itemize}
+    \item If the model classifies only yellow helicopters as a helicopter.
+        \begin{itemize}
+            \item It is overfitting (high variance). This is because the model may be too complex and, thus, it fits features that are not relevant to the classification (the colour).
+            \item To help with high variance model, we can (1) add more data points to the training set, (2) simplify the hypothesis function, (3) 
+            regularize the optimization algorithm, (4) 
+            remove some features from the dataset.
+        \end{itemize}
+    \item If the model classifies any round object as a helicopter.
+        \begin{itemize}
+            \item It is underfitting (high bias). This is because the model is unable to learn more complex feature, such as the bladed, the helicopter tail, etc.
+        \end{itemize}
+\end{itemize}
+
 \subsection{Supporting Vector Machines (SVMs)}
 In SVMs, we want to compute the \underline{\textbf{optimal linear decision boundary}}, which is the \textbf{hyperplane} with the largest margin between the two classes.
 \begin{itemize}
@@ -124,6 +140,7 @@ In SVMs, we want to compute the \underline{\textbf{optimal linear decision bound
     \end{gather*}
     \item Finding the hyperplane that maximizes the margin between the classes is done by minimizing a cost function, which is a convex optimization problem. Convex optimization problems have a unique global minimum, which means that the solution found by SVMs is a \textbf{global minimum}.
 \end{itemize}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width =0.55\textwidth]{svm.png}
@@ -135,6 +152,10 @@ if the data is not linearly separable, we need to introduce regularisation to al
     \min\limits_{(w,b,\varepsilon)}\frac{1}{2}{\lVert w \rVert}^2+C\sum_{i}^{m}\varepsilon_i\hspace*{0.3cm}\text{subject to}\hspace*{0.3cm}y_i(\mathbf{w}\cdot\mathbf{x}^{(i)}+b)\geq1-\varepsilon_i\hspace*{0.3cm}\varepsilon_i\geq0\\
     \text{small C - soft (wide margin)}\hspace*{0.4cm}C\rightarrow\infty\text{ - hard margin}
 \end{gather*}
+
+\boxed{\textbf{NOTE:}}\par
+If an SVM model is overfitting (high variance), you can (1) 
+use regularisation - decreasing C, (2) adding more data, (3) reduce number of features, (4) removing outliers.
 
 \subsubsection{Kernel Trick}
 For nonlinearly separable data, one option is to enrich the data with nonlinearities. This can be achieved by mapping the data into a nonlinear higher-dimensional space, $\mathbf{x}\rightarrow\mathbf{\phi(x)}$, where $\mathbf{\phi}$ is a nonlinear map, for example, a polynomial $(x_1^{(i)},x_2^{(i)})\rightarrow(x_1^{(i)},x_2^{(i)},x_1^{(i)2}+x_2^{(i)2})$. Intuitively, by adding dimensions in the feature space, it is more likely that the data becomes linearly separated.\par 
@@ -508,20 +529,6 @@ Decision tree is constructed in the learning process node by node. The following
         \end{itemize}
     \item \underline{Shallow} trees has less variance but higher bias. \underline{Deep} trees has less bias but more prone to overfitting. 
 \end{itemize}
-
-\boxed{\textbf{NOTE:}}\par
-For a classification model, high variance $\rightarrow$ overfitting, high bias $\rightarrow$ underfitting. 
-\begin{itemize}
-    \item If the model classifies only yellow helicopters as a helicopter.
-        \begin{itemize}
-            \item It is overfitting (high variance). This is because the model may be too complex and, thus, it fits features that are not relevant to the classification (the colour).
-        \end{itemize}
-    \item If the model classifies any round object as a helicopter.
-        \begin{itemize}
-            \item It is underfitting (high bias). This is because the model is unable to learn more complex feature, such as the bladed, the helicopter tail, etc.
-        \end{itemize}
-\end{itemize}
-
 
 \section{Principal Component Analysis (PCA)}
 finds an optimal direction (principle axis of the ellipsoid in gaussian distribution) of maximum variance. The maximum variance in the direction $\hat{w}_1$ is given by the maximum eigenvalue, $\lambda_1$, of the covariance matrix. Geometrically, this direction is the principal axis (eigenvector) of the ellipsoid, which is the direction along which the ellipsoid is most elongated.\par 
